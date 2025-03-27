@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.5"/> <!-- Centra al 50% -->
+        app:layout_constraintGuide_percent="0.4" /> <!-- Centra al 50% -->
 
     <!-- Logo -->
 
@@ -26,22 +26,9 @@
         android:layout_height="150dp"
         android:scaleType="fitCenter"
         android:src="@drawable/logo"
-        app:layout_constraintBottom_toTopOf="@id/appName"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@+id/centerGuide" />
-
-    <TextView
-        android:id="@+id/appName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Ing. en Sistemas Biomédicos \nLaboratorio de Sistemas Computacionales"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@id/logoImage"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
