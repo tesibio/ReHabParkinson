@@ -1,12 +1,11 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)
 }
 
 android {
     namespace = "com.prototipo.rehabparkinson"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.prototipo.rehabparkinson"
@@ -37,6 +36,14 @@ android {
     buildFeatures {
         compose = true
     }
+
+    composeOptions {
+        // https://developer.android.com/jetpack/androidx/releases/compose-kotlin?hl=es-419
+        kotlinCompilerExtensionVersion = "1.5.15"
+    }
+
+    buildToolsVersion = "36.0.0"
+    ndkVersion = "27.0.12077973"
 }
 
 dependencies {
