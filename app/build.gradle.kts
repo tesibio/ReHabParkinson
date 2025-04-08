@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.prototipo.rehabparkinson"
-    compileSdk = 36
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.prototipo.rehabparkinson"
