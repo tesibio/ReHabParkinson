@@ -2,7 +2,6 @@ package com.prototipo.rehabparkinson;
 
 import org.opencv.android.CameraActivity;
 import org.opencv.android.CameraBridgeViewBase.CvCameraViewFrame;
-import org.opencv.android.OpenCVLoader;
 import org.opencv.core.Mat;
 import org.opencv.android.CameraBridgeViewBase;
 import org.opencv.android.CameraBridgeViewBase.CvCameraViewListener2;
@@ -11,17 +10,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.SurfaceView;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 import java.util.Collections;
 import java.util.List;
 
-public class VideoTest extends CameraActivity implements CvCameraViewListener2 {
+public class ExerciseCameraActivity extends CameraActivity implements CvCameraViewListener2 {
     private static final String TAG = "OCVSample::Activity";
 
     private CameraBridgeViewBase mOpenCvCameraView;
 
-    public VideoTest() {
+    public ExerciseCameraActivity() {
         Log.i(TAG, "Instantiated new " + this.getClass());
     }
 
@@ -76,6 +74,7 @@ public class VideoTest extends CameraActivity implements CvCameraViewListener2 {
 
     @Override
     public Mat onCameraFrame(CvCameraViewFrame inputFrame) {
+
         return inputFrame.rgba();
     }
 }

@@ -15,7 +15,7 @@ class IndicacionesActivity : AppCompatActivity() {
 
         // 🔹 Ir a TerapiaEjercicioActivity al presionar "Siguiente"
         btnSiguiente.setOnClickListener {
-            val intent = Intent(this, VideoTest::class.java)
+            val intent = Intent(this, ExerciseCameraActivity::class.java)
             startActivity(intent)
         }
 

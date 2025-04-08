@@ -24,7 +24,7 @@
             android:name=".IndicacionesActivity"
             android:exported="true" />
         <activity
-            android:name=".VideoTest"
+            android:name=".ExerciseCameraActivity"
             android:exported="false" />
         <activity
             android:name=".SplashActivity"
