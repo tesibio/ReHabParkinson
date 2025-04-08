@@ -67,11 +67,13 @@ public class ExerciseCameraActivity extends CameraActivity implements CvCameraVi
             faceDetector = new CascadeClassifier(caseFile.getAbsolutePath());
             if (faceDetector.empty()) {
                 faceDetector = null;
-            } else {
-                cascadeDir.delete();
+            } else if (!cascadeDir.delete()) {
+                Log.e(TAG, "Couldn't delete " + cascadeDir);
             }
 
-            caseFile.delete();
+            if (!caseFile.delete()) {
+                Log.e(TAG, "Couldn't delete " + caseFile);
+            }
 
         } catch (Exception e) {
             Log.e(TAG, "Error reading cascade file. Is it in res/raw/?");
