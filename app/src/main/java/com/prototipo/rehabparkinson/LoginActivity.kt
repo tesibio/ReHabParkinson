@@ -7,10 +7,21 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
+import android.util.Log
+import org.opencv.android.OpenCVLoader
+
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login) // Enlaza con el XML de login
+
+        // OpenCV debe ser iniciado!
+        if (OpenCVLoader.initLocal()) {
+            Log.d("LOADED", "OpenCV loaded successfully")
+        } else {
+            Log.d("LOADED", "OpenCV failed to load")
+            return
+        }
 
         val etExpNumber = findViewById<EditText>(R.id.etExpNumber)
         val btnLogin = findViewById<Button>(R.id.btnLogin)
