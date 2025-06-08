@@ -1,0 +1,56 @@
+[
+  {
+    "apellido":"Torres",
+    "nombre": "Mariana",
+    "numExpediente": "2048",
+    "foto":"perfil_001.jpg"
+  },
+  {
+    "apellido":"García",
+    "nombre": "Luis Fernando",
+    "numExpediente": "1327",
+    "foto":"perfil_002.jpg"
+  },
+  {
+    "apellido":"Mendoza",
+    "nombre": "Sofía",
+    "numExpediente": "8491",
+    "foto":"perfil_003.jpg"
+  },
+  {
+    "apellido":"Ruíz",
+    "nombre": "Andrés",
+    "numExpediente": "5173",
+    "foto":"perfil_004.jpg"
+  },
+  {
+    "apellido":"Sánchez",
+    "nombre": "Valeria",
+    "numExpediente": "3902",
+    "foto":"perfil_005.jpg"
+  },
+  {
+    "apellido":"Ortega",
+    "nombre": "Diego",
+    "numExpediente": "7684",
+    "foto":"perfil_006.jpg"
+  },
+  {
+    "apellido":"Paredes",
+    "nombre": "Camila",
+    "numExpediente": "4519",
+    "foto":"perfil_007.jpg"
+  },
+  {
+    "apellido":"Rosales",
+    "nombre": "Javier",
+    "numExpediente": "6247",
+    "foto":"perfil_008.jpg"
+  },
+  {
+    "apellido":"Esquivel",
+    "nombre": "Natalia",
+    "numExpediente": "1085",
+    "foto":"perfil_009.jpg"
+  }
+]

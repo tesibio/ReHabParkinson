@@ -7,13 +7,17 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import java.io.InputStreamReader
+
 import android.util.Log
 import org.opencv.android.OpenCVLoader
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login) // Enlaza con el XML de login
+        setContentView(R.layout.activity_login)
 
         // OpenCV debe ser iniciado!
         if (OpenCVLoader.initLocal()) {
@@ -28,15 +32,25 @@ class LoginActivity : AppCompatActivity() {
 
         btnLogin.setOnClickListener {
             val expNumber = etExpNumber.text.toString()
+            val usuarios = cargarUsuariosDesdeAssets() // ✅ usamos la función
 
-            if (expNumber.isNotEmpty()) {
-                // Ir a MainActivity solo si el campo no está vacío
+            val usuario = usuarios.find { it.numExpediente == expNumber }
+
+            if (usuario != null) {
                 val intent = Intent(this, MainActivity::class.java)
+                intent.putExtra("nombreUsuario", "${usuario.nombre} ${usuario.apellido}")
                 startActivity(intent)
                 finish()
             } else {
-                Toast.makeText(this, "Por favor, ingresa tu número de expediente", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Número de expediente no válido", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+     private fun cargarUsuariosDesdeAssets(): List<Usuario> {
+        val inputStream = assets.open("users.json")
+        val reader = InputStreamReader(inputStream)
+        val tipoLista = object : TypeToken<List<Usuario>>() {}.type
+        return Gson().fromJson(reader, tipoLista)
     }
 }

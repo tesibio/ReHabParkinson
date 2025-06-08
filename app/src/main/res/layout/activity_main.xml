@@ -21,6 +21,20 @@
         android:gravity="center"
         app:layout_constraintTop_toTopOf="parent"/>
 
+    <TextView
+        android:id="@+id/tvUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bienvenido/a"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:padding="8dp"
+        app:layout_constraintTop_toBottomOf="@id/tvInicio"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
     <!-- Texto "Terapias asignadas" -->
     <TextView
         android:id="@+id/tvTerapiasAsignadas"
@@ -31,7 +45,7 @@
         android:textStyle="bold"
         android:padding="10dp"
         android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@id/tvInicio"
+        app:layout_constraintTop_toBottomOf="@id/tvUsuario"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -73,7 +87,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/imagendummy" />
+                        android:src="@drawable/terapiacervical"
+                        app:srcCompat="@drawable/terapiacervical" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -85,9 +100,11 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                        android:textSize="14sp"
-                        android:layout_marginBottom="8dp"/>
+                        android:text="Este ejercicio consiste en inclinar lateralmente el cuello mientras se permanece sentado con la espalda apoyada en el respaldo de una silla Su propósito es movilizar suavemente la columna cervical, liberar tensiones musculares acumuladas por malas posturas o esfuerzo repetitivo, y favorecer la conciencia corporal en la zona del cuello Es especialmente útil en procesos de rehabilitación por dolor cervical, rigidez articular o fatiga muscular, y debe realizarse con calma para evitar molestias como mareo o tensión innecesaria."
+                        android:textSize="12sp"
+                        android:layout_marginBottom="8dp"
+                        android:textAlignment="viewStart"
+                        android:justificationMode="inter_word"/>
 
                     <Button
                         android:id="@+id/btnCervical"
@@ -123,9 +140,9 @@
 
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/imagenpaciente" />
+                        android:layout_height="160dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/terapialumbar" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -137,9 +154,11 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                        android:textSize="14sp"
-                        android:layout_marginBottom="8dp"/>
+                        android:text="Este ejercicio se realiza de pie, con los pies alineados al ancho de los hombros y las manos en la cintura, flexionando lateralmente el tronco hacia un lado sin girar el cuerpo El movimiento busca movilizar la columna lumbar en el plano lateral de forma controlada, regresando siempre a la posición central antes de cambiar de lado Está indicado para mejorar la flexibilidad lumbar, reducir la rigidez en la parte baja de la espalda y favorecer una postura equilibrada en procesos de rehabilitación o prevención de dolor lumbar"
+                        android:textSize="12sp"
+                        android:layout_marginBottom="8dp"
+                        android:textAlignment="viewStart"
+                        android:justificationMode="inter_word"/>
 
                     <Button
                         android:id="@+id/btnLumbar"

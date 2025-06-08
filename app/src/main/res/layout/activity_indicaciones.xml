@@ -50,31 +50,37 @@
         app:layout_constraintTop_toBottomOf="@+id/tvCalibracion">
 
         <CheckBox
+            android:id="@+id/cbChkbx1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Elige un lugar tranquilo" />
+            android:text="Elige un lugar tranquilo"/>
 
         <CheckBox
+            android:id="@+id/cbChkbx2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Usa ropa que resalte con tu entorno" />
 
         <CheckBox
+            android:id="@+id/cbChkbx3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Evita que otras personas crucen detrás" />
 
         <CheckBox
+            android:id="@+id/cbChkbx4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Ubícate en una zona con buena iluminación" />
 
         <CheckBox
+            android:id="@+id/cbChkbx5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Evita estar cerca de objetos voluminosos" />
 
         <CheckBox
+            android:id="@+id/cbChkbx6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Sigue el ritmo de movimiento mostrado" />
