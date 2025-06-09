@@ -12,4 +12,5 @@
     <string name="desc_lumbar">Ejercicio realizado de pie, pensado para movilizar la zona lumbar. Ayuda a reducir la rigidez, mejorar la flexibilidad y favorecer una postura equilibrada. Ideal para realizarlo de forma lenta y controlada.</string>
     <string name="contentdesc_cervical">Ilustración del ejercicio de estiramiento cervical</string>
     <string name="contentdesc_lumbar">Ilustración del ejercicio de flexión lateral lumbar</string>
+    <string name="menu_opciones">Icono de menú de opciones</string>
 </resources>

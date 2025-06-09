@@ -42,6 +42,8 @@ class LoginActivity : AppCompatActivity() {
                 // ✅ Guardamos el nombre en SharedPreferences
                 val prefs = getSharedPreferences("datosUsuario", MODE_PRIVATE)
                 prefs.edit().putString("nombreUsuario", nombreCompleto).apply()
+                prefs.edit().putString("numExpediente", usuario.numExpediente).apply()
+
 
                 // ✅ Ya no es necesario pasar el nombre por Intent
                 val intent = Intent(this, MainActivity::class.java)

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_perfil"
+        android:title="Perfil de usuario" />
+    <item
+        android:id="@+id/menu_version"
+        android:title="Versión de la app" />
+    <item
+        android:id="@+id/menu_logout"
+        android:title="Cerrar sesión" />
+</menu>

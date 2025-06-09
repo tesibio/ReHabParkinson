@@ -53,7 +53,7 @@
         android:id="@+id/etExpNumber"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:hint="123456"
+        android:hint="1234"
         android:inputType="number"
         android:textAlignment="center"
         android:backgroundTint="@color/black"
