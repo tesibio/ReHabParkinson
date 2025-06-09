@@ -14,40 +14,39 @@
         android:layout_height="wrap_content"
         android:background="@color/brown"
         android:padding="16dp"
-        android:text="Inicio"
+        android:text="@string/inicio"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
         android:gravity="center"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Bienvenido/a"
+        android:text=""
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:padding="8dp"
         app:layout_constraintTop_toBottomOf="@id/tvInicio"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- Texto "Terapias asignadas" -->
     <TextView
         android:id="@+id/tvTerapiasAsignadas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Terapias asignadas"
+        android:text="@string/terapias_asignadas"
         android:textSize="18sp"
         android:textStyle="bold"
         android:padding="10dp"
         android:gravity="center"
         app:layout_constraintTop_toBottomOf="@id/tvUsuario"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- ScrollView para las tarjetas -->
     <androidx.core.widget.NestedScrollView
@@ -79,41 +78,43 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Columna cervical"
+                        android:text="@string/titulo_cervical"
                         android:textSize="16sp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/terapiacervical"
-                        app:srcCompat="@drawable/terapiacervical" />
+                        android:scaleType="centerInside"
+                        android:src="@drawable/imacervical"
+                        app:srcCompat="@drawable/imacervical"
+                        android:contentDescription="@string/contentdesc_cervical" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Descripción general"
-                        android:textStyle="bold"
-                        android:layout_marginTop="8dp"/>
+                        android:layout_marginTop="8dp"
+                        android:text="@string/desc_cervical_titulo"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Este ejercicio consiste en inclinar lateralmente el cuello mientras se permanece sentado con la espalda apoyada en el respaldo de una silla Su propósito es movilizar suavemente la columna cervical, liberar tensiones musculares acumuladas por malas posturas o esfuerzo repetitivo, y favorecer la conciencia corporal en la zona del cuello Es especialmente útil en procesos de rehabilitación por dolor cervical, rigidez articular o fatiga muscular, y debe realizarse con calma para evitar molestias como mareo o tensión innecesaria."
-                        android:textSize="12sp"
                         android:layout_marginBottom="8dp"
+                        android:justificationMode="inter_word"
+                        android:text="@string/desc_cervical"
                         android:textAlignment="viewStart"
-                        android:justificationMode="inter_word"/>
+                        android:textSize="12sp" />
 
                     <Button
                         android:id="@+id/btnCervical"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="REALIZAR"
+                        android:layout_gravity="end"
                         android:backgroundTint="@color/brown"
+                        android:text="@string/realizar"
                         android:textColor="@color/white"
-                        android:layout_gravity="end"/>
+                        android:contentDescription="Botón para iniciar ejercicio cervical" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -134,40 +135,42 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Columna lumbar"
+                        android:text="@string/titulo_lumbar"
                         android:textSize="16sp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="160dp"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/terapialumbar" />
+                        android:src="@drawable/imalumbar"
+                        android:contentDescription="@string/contentdesc_lumbar" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Descripción general"
+                        android:text="@string/desc_lumbar_titulo"
                         android:textStyle="bold"
-                        android:layout_marginTop="8dp"/>
+                        android:layout_marginTop="8dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Este ejercicio se realiza de pie, con los pies alineados al ancho de los hombros y las manos en la cintura, flexionando lateralmente el tronco hacia un lado sin girar el cuerpo El movimiento busca movilizar la columna lumbar en el plano lateral de forma controlada, regresando siempre a la posición central antes de cambiar de lado Está indicado para mejorar la flexibilidad lumbar, reducir la rigidez en la parte baja de la espalda y favorecer una postura equilibrada en procesos de rehabilitación o prevención de dolor lumbar"
+                        android:text="@string/desc_lumbar"
                         android:textSize="12sp"
                         android:layout_marginBottom="8dp"
                         android:textAlignment="viewStart"
-                        android:justificationMode="inter_word"/>
+                        android:justificationMode="inter_word" />
 
                     <Button
                         android:id="@+id/btnLumbar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="REALIZAR"
+                        android:text="@string/realizar"
                         android:backgroundTint="@color/brown"
                         android:textColor="@color/white"
-                        android:layout_gravity="end"/>
+                        android:layout_gravity="end"
+                        android:contentDescription="Botón para iniciar ejercicio lumbar" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -175,3 +178,4 @@
     </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

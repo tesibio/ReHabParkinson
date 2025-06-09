@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">ReHabParkinson</string>
+    <string name="inicio">Inicio</string>
+    <string name="bienvenida_con_nombre">Bienvenido/a %1$s</string>
+    <string name="terapias_asignadas">Terapias asignadas</string>
+    <string name="titulo_cervical">Estiramiento cervical sentado</string>
+    <string name="desc_cervical_titulo">Descripción general</string>
+    <string name="desc_cervical">Ejercicio suave que ayuda a reducir rigidez, aliviar tensiones y mejorar la conciencia corporal. Se realiza sentado, con la espalda apoyada, y de forma lenta para mayor seguridad y confort.</string>
+    <string name="realizar">REALIZAR</string>
+    <string name="titulo_lumbar">Flexión lateral</string>
+    <string name="desc_lumbar_titulo">Descripción general</string>
+    <string name="desc_lumbar">Ejercicio realizado de pie, pensado para movilizar la zona lumbar. Ayuda a reducir la rigidez, mejorar la flexibilidad y favorecer una postura equilibrada. Ideal para realizarlo de forma lenta y controlada.</string>
+    <string name="contentdesc_cervical">Ilustración del ejercicio de estiramiento cervical</string>
+    <string name="contentdesc_lumbar">Ilustración del ejercicio de flexión lateral lumbar</string>
 </resources>
