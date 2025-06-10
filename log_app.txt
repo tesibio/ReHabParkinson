@@ -1,0 +1,25 @@
+log_app
+08/06/25
+
+se agregaron Expedientes artificiales para ser placeholders de futura implementación
+se agregó lógica de acceso a la app
+se agregó una ventana de perfil
+Se creo un icono de app
+se mejoro la lectura de las descripciones
+**********
+datos ficticios para entrada
+Torres 	Mariana	2048
+García	Luis Fernando	1327
+Mendoza	Sofía	8491
+Ruíz	Andrés	5173
+Sánchez	Valeria	3902
+Ortega 	Diego	7684
+Paredes	Camila	4519
+Rosales	Javier	6247
+Luna	Rodrígo	3761
+*****
+falta agregar ventana de version
+Falta agregar botón de grabación
+falta lógica de grabación
+falta dirección google de subida
+
