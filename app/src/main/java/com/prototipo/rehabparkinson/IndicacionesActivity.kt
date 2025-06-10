@@ -43,7 +43,8 @@ class IndicacionesActivity : AppCompatActivity() {
 
         // Acción del botón Siguiente
         btnSiguiente.setOnClickListener {
-            val intent = Intent(this, ExerciseCameraActivity::class.java)
+            //val intent = Intent(this, ExerciseCameraActivity::class.java)
+            val intent = Intent(this, VideoCaptureActivity::class.java)
             startActivity(intent)
         }
 

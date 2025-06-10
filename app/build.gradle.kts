@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "com.prototipo.rehabparkinson"
-        minSdk = 24
+        minSdk = 29
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -47,6 +47,8 @@ android {
     ndkVersion = "27.0.12077973"
 }
 
+val cameraxVersion = "1.3.1"
+
 dependencies {
 
     implementation(libs.androidx.core.ktx)
@@ -61,6 +63,14 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(project(":opencv"))
+
+    implementation("androidx.camera:camera-core:$cameraxVersion")
+    implementation("androidx.camera:camera-camera2:$cameraxVersion")
+    implementation("androidx.camera:camera-lifecycle:$cameraxVersion")
+    implementation("androidx.camera:camera-view:$cameraxVersion")
+    implementation("androidx.camera:camera-video:$cameraxVersion")
+    implementation("androidx.media3:media3-exoplayer:1.3.1")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -70,5 +80,4 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.google.code.gson:gson:2.10.1")
-
 }
