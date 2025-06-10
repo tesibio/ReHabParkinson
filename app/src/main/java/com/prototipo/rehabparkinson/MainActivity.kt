@@ -58,7 +58,21 @@ class MainActivity : AppCompatActivity() {
                     } catch (e: PackageManager.NameNotFoundException) {
                         "desconocida"
                     }
-                    Toast.makeText(this, "Versión de la app: $version", Toast.LENGTH_SHORT).show()
+                    val desarrolladores = """ 
+                        Versión de la app: $version 
+                        Desarrollado por:
+                            - Dr. en C. Aguilar-Pérez, Luis Antonio
+                            - Ing. Gotchev Chtereva, Cristian Borislavjov
+                            - Dr. en C. Jímenez-Ángeles, Luis
+                            - Dra. Salomé Morales Sánchez
+                            - Dr. en C. Rojas-Arce Jorge L.""".trimIndent()
+
+                    val dialog = androidx.appcompat.app.AlertDialog.Builder(this)
+                        .setTitle("Información de la app")
+                        .setMessage(desarrolladores)
+                        .setPositiveButton("OK", null)
+                        .create()
+                    dialog.show()
                     true
                 }
                 R.id.menu_logout -> {

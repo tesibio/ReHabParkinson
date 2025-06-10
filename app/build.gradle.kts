@@ -13,7 +13,7 @@ android {
         minSdk = 24
         targetSdk = 34
         versionCode = 1
-        versionName = "1.0"
+        versionName = "0.1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -45,6 +45,8 @@ android {
 
     buildToolsVersion = "36.0.0"
     ndkVersion = "27.0.12077973"
+    val cameraxVersion = "1.3.0"
+
 }
 
 dependencies {
@@ -70,5 +72,11 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.google.code.gson:gson:2.10.1")
+    implementation(libs.camera.core)
+    implementation(libs.camera.camera2)
+    implementation(libs.camera.lifecycle)
+    implementation(libs.camera.view)
+    implementation(libs.camera.video)
+
 
 }
