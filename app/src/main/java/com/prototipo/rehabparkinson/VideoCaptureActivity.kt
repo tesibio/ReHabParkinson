@@ -45,6 +45,8 @@ class VideoCaptureActivity : AppCompatActivity() {
         previewView = findViewById(R.id.previewView)
         btnGrabar = findViewById(R.id.btnGrabar)
         cameraExecutor = Executors.newSingleThreadExecutor()
+        val tipoEjercicio = intent.getStringExtra("tipoEjercicio") ?: "CE"
+
 
         if (allPermissionsGranted()) {
             startCamera()
@@ -58,6 +60,7 @@ class VideoCaptureActivity : AppCompatActivity() {
         btnEnviar = findViewById(R.id.btnEnviar)
         btnEnviar.setOnClickListener {
             val intent = Intent(this, VideoSelectorActivity::class.java)
+            intent.putExtra("tipoEjercicio", tipoEjercicio)
             startActivity(intent)
         }
         btnEnviar.visibility = View.GONE

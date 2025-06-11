@@ -76,27 +76,17 @@ object DriveUploader {
 
         Thread {
             try {
-                // Obtener nombre de carpeta del usuario actual
-                val subfolderName = obtenerNombrePacienteDesdePrefs(context)
-                if (subfolderName == null) {
-                    Log.e(TAG, "No se pudo obtener el nombre del paciente")
-                    (context as Activity).runOnUiThread {
-                        Toast.makeText(context, "Error: paciente no identificado", Toast.LENGTH_SHORT).show()
-                        onComplete(false)
-                    }
-                    return@Thread
-                }
-
-                val subfolderId = obtenerOCrearSubcarpeta(service, subfolderName)
+                val folderId = "1PrxzVbT6mZSvKBP8DTbH-bxTiBclKPUN"  // Carpeta fija
 
                 val fileMetadata = com.google.api.services.drive.model.File().apply {
                     name = file.name
-                    parents = listOf(subfolderId)
+                    parents = listOf(folderId)
                 }
 
                 val mediaContent = InputStreamContent("video/mp4", file.inputStream())
 
-                val uploadedFile = service.files().create(fileMetadata, mediaContent)
+                val uploadedFile = service.files()
+                    .create(fileMetadata, mediaContent)
                     .setFields("id")
                     .execute()
 

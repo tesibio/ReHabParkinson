@@ -26,6 +26,7 @@ class terapiaLumbarActivity : AppCompatActivity() {
         // 🔹 Ir a IndicacionesActivity al presionar "Realizar"
         btnRealizar.setOnClickListener {
             val intent = Intent(this, IndicacionesActivity::class.java)
+            intent.putExtra("tipoEjercicio", "LU")
             startActivity(intent)
         }
 

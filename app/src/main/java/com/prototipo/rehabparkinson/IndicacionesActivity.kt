@@ -19,6 +19,8 @@ class IndicacionesActivity : AppCompatActivity() {
 
         btnSiguiente = findViewById(R.id.btnSiguiente)
         btnSalir = findViewById(R.id.btnSalir)
+        val tipoEjercicio = intent.getStringExtra("tipoEjercicio") ?: "CE" // por defecto CE
+
 
         // Inicializamos todos los CheckBoxes con sus IDs correctos
         checkBoxes = listOf(
@@ -45,6 +47,7 @@ class IndicacionesActivity : AppCompatActivity() {
         btnSiguiente.setOnClickListener {
             //val intent = Intent(this, ExerciseCameraActivity::class.java)
             val intent = Intent(this, VideoCaptureActivity::class.java)
+            intent.putExtra("tipoEjercicio", tipoEjercicio)
             startActivity(intent)
         }
 
