@@ -11,6 +11,11 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.api.services.drive.DriveScopes
+
+
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +46,26 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun cerrarSesionGoogle() {
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestEmail()
+            .requestScopes(com.google.android.gms.common.api.Scope(DriveScopes.DRIVE_FILE))
+            .build()
+
+        val client = GoogleSignIn.getClient(this, gso)
+        client.signOut().addOnCompleteListener {
+            // Limpiar SharedPreferences
+            getSharedPreferences("datosUsuario", MODE_PRIVATE).edit().clear().apply()
+
+            // Regresar al login
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            finish()
+        }
+    }
+
+
     private fun mostrarMenu() {
         val popup = PopupMenu(this, findViewById(R.id.btnMenu))
         val inflater: MenuInflater = popup.menuInflater
@@ -56,16 +81,35 @@ class MainActivity : AppCompatActivity() {
                     val version = try {
                         packageManager.getPackageInfo(packageName, 0).versionName
                     } catch (e: PackageManager.NameNotFoundException) {
-                        "desconocida"
+                        getString(R.string.app_version)
                     }
-                    Toast.makeText(this, "Versión de la app: $version", Toast.LENGTH_SHORT).show()
+
+                    val msg = getString(
+                        R.string.dialog_message_version,
+                        version,
+                        getString(R.string.developer_1),
+                        getString(R.string.developer_2),
+                        getString(R.string.developer_3),
+                        getString(R.string.developer_4),
+                        getString(R.string.developer_5)
+                    )
+
+                    androidx.appcompat.app.AlertDialog.Builder(this)
+                        .setTitle(getString(R.string.dialog_title_version))
+                        .setMessage(msg)
+                        .setPositiveButton(getString(R.string.ok), null)
+                        .show()
+
                     true
                 }
+
+
                 R.id.menu_logout -> {
                     getSharedPreferences("datosUsuario", MODE_PRIVATE).edit().clear().apply()
                     val intent = Intent(this, LoginActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
+                    cerrarSesionGoogle()
                     finish()
                     true
                 }

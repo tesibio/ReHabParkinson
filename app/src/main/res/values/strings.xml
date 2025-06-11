@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">ReHabParkinson</string>
     <string name="inicio">Inicio</string>
     <string name="bienvenida_con_nombre">Bienvenido/a %1$s</string>
@@ -13,4 +13,17 @@
     <string name="contentdesc_cervical">Ilustración del ejercicio de estiramiento cervical</string>
     <string name="contentdesc_lumbar">Ilustración del ejercicio de flexión lateral lumbar</string>
     <string name="menu_opciones">Icono de menú de opciones</string>
+    <string name="app_version">0.1.0</string>
+    <string name="developer_1">Dr. en C. Luis Antonio Aguilar</string>
+    <string name="developer_2">Ing. Gotchev Chtereva, Cristian Borislavov</string>
+    <string name="developer_3">Dr. Luis Jiménez Ángeles</string>
+    <string name="developer_4">Dra. Ingrid Salomé Morales Sánchez</string>
+    <string name="developer_5">Dr. Jorge Luis Rojas Arce</string>
+    <string name="dialog_message_version">
+    Versión: %1$s\n\nDesarrolladores:\n• %2$s\n• %3$s\n• %4$s\n• %5$s\n• %6$s\n\n
+    </string>
+    <string name="dialog_title_version">Información de la app</string>
+
+    <string name="ok">OK</string>
+
 </resources>

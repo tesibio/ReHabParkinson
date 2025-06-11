@@ -1,0 +1,89 @@
+Log de desarrollo: Implementación de grabación de video con CameraX en ReHabParkinson
+
+1. Requerimientos iniciales
+
+Se solicitó implementar la grabación de video dentro de la app Android ReHabParkinson.
+
+El objetivo era permitir grabar video por máximo 2 minutos y guardar los archivos en la carpeta accesible del usuario.
+
+Se buscaba compatibilidad con Android 9+ y uso de CameraX.
+
+2. Preparación del entorno
+
+Se configuró correctamente el archivo build.gradle.kts (app) para incluir dependencias de CameraX (camera-core, camera-video, camera-lifecycle, camera-view).
+
+Se ajustó el minSdk a 29 para facilitar manejo de almacenamiento sin requerir permisos adicionales de escritura.
+
+3. Permisos y manifiesto
+
+Se actualizaron los permisos en AndroidManifest.xml:
+
+CAMERA
+
+RECORD_AUDIO
+
+WRITE_EXTERNAL_STORAGE (hasta API 28)
+
+READ_MEDIA_VIDEO (desde API 33)
+
+Se verificó la declaración de uses-feature para compatibilidad con cámaras frontales y traseras.
+
+4. Lógica de grabación de video
+
+Se creó la clase VideoCaptureActivity.kt:
+
+Se implementó CameraX con PreviewView para mostrar la cámara.
+
+Se usó Recorder y VideoCapture.withOutput().
+
+Se configuró MediaStoreOutputOptions para guardar el video en Movies/ReHabParkinson.
+
+Se incluyó fallback a FileOutputOptions si fallaba la inserción en MediaStore.
+
+Se implementó un CountDownTimer de 2 minutos.
+
+Se agregó detección de errores con logs y Toast informativos.
+
+5. Interfaz de usuario
+
+Se definió el layout activity_video_capture.xml:
+
+Vista de cámara (PreviewView)
+
+Botón de grabación (btnRecord)
+
+Botón para cambiar cámara (btnSwitchCamera)
+
+Botón para cancelar y cerrar (btnCancel)
+
+6. Funcionalidades adicionales
+
+Se añadió la funcionalidad para cambiar entre cámara frontal y trasera.
+
+Se conectó IndicacionesActivity con VideoCaptureActivity para iniciar la grabación desde el flujo principal de la app.
+
+Se validó la correcta concesión de permisos al inicio de la actividad.
+
+Se implementó btnCancel para ejecutar finish() y cerrar la actividad.
+
+7. Diagnóstico y errores corregidos
+
+Se corrigió error por tools:context mal definido en XML (xmlns:tools no estaba declarado).
+
+Se solucionaron errores relacionados con ERROR_INVALID_OUTPUT_OPTIONS mediante verificación de estado de almacenamiento.
+
+Se implementaron logs detallados para detectar fallos en inserción de URI.
+
+Se aseguraron condiciones de permisos dinámicos según versión de Android.
+
+8. Resultado final
+
+La app graba video exitosamente durante un máximo de 2 minutos.
+
+El video se guarda en una carpeta accesible (Movies/ReHabParkinson).
+
+La interfaz permite cambiar cámara, iniciar/detener grabación y cancelar la operación.
+
+Todas las funciones fueron probadas y están operativas.
+
+Última actualización del módulo: 10 de junio de 2025

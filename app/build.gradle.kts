@@ -43,6 +43,17 @@ android {
         kotlinCompilerExtensionVersion = "1.5.15"
     }
 
+    packagingOptions {
+        packagingOptions {
+            exclude("META-INF/INDEX.LIST")
+            exclude("META-INF/LICENSE")
+            exclude("META-INF/LICENSE.txt")
+            exclude("META-INF/NOTICE")
+            exclude("META-INF/NOTICE.txt")
+            exclude("META-INF/DEPENDENCIES")
+        }
+    }
+
     buildToolsVersion = "36.0.0"
     ndkVersion = "27.0.12077973"
 }
@@ -70,6 +81,12 @@ dependencies {
     implementation("androidx.camera:camera-view:$cameraxVersion")
     implementation("androidx.camera:camera-video:$cameraxVersion")
     implementation("androidx.media3:media3-exoplayer:1.3.1")
+
+    implementation("com.google.android.gms:play-services-auth:21.0.0")
+    implementation("com.google.api-client:google-api-client-android:1.35.0")
+    implementation("com.google.apis:google-api-services-drive:v3-rev20250511-2.0.0")
+
+    implementation("com.google.apis:google-api-services-drive:v3-rev20250511-2.0.0")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
