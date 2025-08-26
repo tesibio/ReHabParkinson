@@ -33,7 +33,7 @@ class TerapiaCervicalActivity : AppCompatActivity() {
         // 🔹 Mostrar el video al presionar "Ejemplo"
         btnEjemplo.setOnClickListener {
             videoContainer.visibility = View.VISIBLE  // Muestra el contenedor con el video
-            val videoUri = Uri.parse("android.resource://$packageName/${R.raw.ejemplo_terapia}")
+            val videoUri = Uri.parse("android.resource://$packageName/${R.raw.video_cc01}")
             videoView.setVideoURI(videoUri)
 
             val mediaController = MediaController(this)

@@ -94,7 +94,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/titulo_cervical"
+                        android:text="@string/CC01"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -102,15 +102,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:scaleType="centerInside"
-                        android:src="@drawable/imacervical"
-                        app:srcCompat="@drawable/imacervical"
-                        android:contentDescription="@string/contentdesc_cervical" />
+                        android:src="@drawable/ima_cc01"
+                        app:srcCompat="@drawable/ima_cc01"
+                        android:contentDescription="@string/contentdesc_CC01"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="@string/desc_cervical_titulo"
+                        android:text="@string/desc_DESCRIPCION_GENERAL_TITULO"
                         android:textStyle="bold" />
 
                     <TextView
@@ -118,7 +118,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:justificationMode="inter_word"
-                        android:text="@string/desc_cervical"
+                        android:text="@string/desc_CC01"
                         android:textAlignment="viewStart"
                         android:textSize="12sp" />
 
@@ -134,7 +134,7 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Tarjeta 2: Columna lumbar -->
+            <!-- Tarjeta 2: CC02 Inclinación lateral derecha -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -151,7 +151,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/titulo_lumbar"
+                        android:text="@string/CC02"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -159,20 +159,21 @@
                         android:layout_width="match_parent"
                         android:layout_height="160dp"
                         android:scaleType="fitCenter"
-                        android:src="@drawable/imalumbar"
-                        android:contentDescription="@string/contentdesc_lumbar" />
+                        android:src="@drawable/ima_cc02"
+                        app:srcCompat="@drawable/ima_cc02"
+                        android:contentDescription="@string/contentdesc_CC02" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/desc_lumbar_titulo"
+                        android:text="@string/desc_DESCRIPCION_GENERAL_TITULO"
                         android:textStyle="bold"
                         android:layout_marginTop="8dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/desc_lumbar"
+                        android:text="@string/desc_CC02"
                         android:textSize="12sp"
                         android:layout_marginBottom="8dp"
                         android:textAlignment="viewStart"
@@ -190,8 +191,186 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
+            <!-- Tarjeta 3: CL01 Inclinación lateral derecha -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/CL01"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ima_cl01"
+                        app:srcCompat="@drawable/ima_cl01"
+                        android:contentDescription="@string/contentdesc_CL01" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/desc_DESCRIPCION_GENERAL_TITULO"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:justificationMode="inter_word"
+                        android:text="@string/desc_CL01"
+                        android:textAlignment="viewStart"
+                        android:textSize="12sp" />
+
+                    <!-- Falta corregir boton a terapia ->
+                    <Button
+                        android:id="@+id/btnCervical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:backgroundTint="@color/brown"
+                        android:text="@string/realizar"
+                        android:textColor="@color/white"
+                        android:contentDescription="Botón para iniciar ejercicio cervical" />
+                    -->
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <!-- Tarjeta 4: EC03 Mano al oído contralateral -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/EC03"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="160dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ima_ec03"
+                        app:srcCompat="@drawable/ima_ec03"
+                        android:contentDescription="@string/contentdesc_EC03" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/desc_DESCRIPCION_GENERAL_TITULO"
+                        android:textStyle="bold"
+                        android:layout_marginTop="8dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/desc_EC03"
+                        android:textSize="12sp"
+                        android:layout_marginBottom="8dp"
+                        android:textAlignment="viewStart"
+                        android:justificationMode="inter_word" />
+
+                    <!--
+                    <Button
+                       android:id="@+id/btnLumbar"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="@string/realizar"
+                       android:backgroundTint="@color/brown"
+                       android:textColor="@color/white"
+                       android:layout_gravity="end"
+                       android:contentDescription="Botón para iniciar ejercicio lumbar" />
+                       -->
+               </LinearLayout>
+           </com.google.android.material.card.MaterialCardView>
+
+            <!-- Tarjeta 5: EC05 Elevación del brazo derecho y separación del brazo izquierdo -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/EC05"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="160dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ima_ec05"
+                        app:srcCompat="@drawable/ima_ec05"
+                        android:contentDescription="@string/contentdesc_EC05" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/desc_DESCRIPCION_GENERAL_TITULO"
+                        android:textStyle="bold"
+                        android:layout_marginTop="8dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/desc_EC05"
+                        android:textSize="12sp"
+                        android:layout_marginBottom="8dp"
+                        android:textAlignment="viewStart"
+                        android:justificationMode="inter_word" />
+
+                    <!--
+                    <Button
+                        android:id="@+id/btnLumbar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/realizar"
+                        android:backgroundTint="@color/brown"
+                        android:textColor="@color/white"
+                        android:layout_gravity="end"
+                        android:contentDescription="Botón para iniciar ejercicio lumbar" />
+                    -->
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+   </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

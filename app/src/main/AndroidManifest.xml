@@ -15,7 +15,6 @@
 
     <uses-permission android:name="android.permission.INTERNET"/>
 
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -27,24 +26,23 @@
         android:theme="@style/Theme.ReHabParkinson"
         tools:targetApi="31">
 
-        <activity android:name=".IndicacionesActivity" android:exported="true" />
-        <activity android:name=".ExerciseCameraActivity" android:exported="false" />
+        <!-- Splash como pantalla inicial -->
         <activity android:name=".SplashActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- MainActivity sin intent-filter -->
+        <activity android:name=".MainActivity" android:exported="true"
+            android:theme="@style/Theme.ReHabParkinson" />
+
+        <activity android:name=".IndicacionesActivity" android:exported="true" />
+        <activity android:name=".ExerciseCameraActivity" android:exported="false" />
         <activity android:name=".LoginActivity" android:exported="true" />
         <activity android:name=".terapiaLumbarActivity" android:exported="false" />
         <activity android:name=".TerapiaCervicalActivity" android:exported="false" />
-        <activity android:name=".MainActivity" android:exported="true"
-            android:theme="@style/Theme.ReHabParkinson">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity android:name=".VideoCaptureActivity" android:exported="false" />
         <activity android:name=".PerfilActivity" android:exported="false" />
         <activity android:name=".VideoSelectorActivity" />
