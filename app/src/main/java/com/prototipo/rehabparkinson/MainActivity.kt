@@ -44,6 +44,24 @@ class MainActivity : AppCompatActivity() {
         btnLumbar.setOnClickListener {
             startActivity(Intent(this, terapiaLumbarActivity::class.java))
         }
+
+        // ✅ Botón terapia Terapia_cl01
+        val btnterapia_cl01 = findViewById<Button>(R.id.btnterapia_cl01)
+        btnterapia_cl01.setOnClickListener {
+            startActivity(Intent(this, terapia_cl01::class.java))
+        }
+
+        // ✅ Botón terapia Terapia_ec03
+        val btnterapiaterapia_ec03 = findViewById<Button>(R.id.btnterapia_ec03)
+        btnterapiaterapia_ec03.setOnClickListener {
+            startActivity(Intent(this, terapia_ec03::class.java))
+        }
+
+        // ✅ Botón terapia Terapia_ec05
+        val btnterapia_ec05 = findViewById<Button>(R.id.btnterapia_ec05)
+        btnterapia_ec05.setOnClickListener {
+            startActivity(Intent(this, terapia_ec05::class.java))
+        }
     }
 
     private fun cerrarSesionGoogle() {

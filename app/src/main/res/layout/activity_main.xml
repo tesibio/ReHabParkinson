@@ -236,9 +236,9 @@
                         android:textAlignment="viewStart"
                         android:textSize="12sp" />
 
-                    <!-- Falta corregir boton a terapia ->
+                    <!-- Falta corregir boton a terapia -->
                     <Button
-                        android:id="@+id/btnCervical"
+                        android:id="@+id/btnterapia_cl01"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
@@ -246,7 +246,7 @@
                         android:text="@string/realizar"
                         android:textColor="@color/white"
                         android:contentDescription="Botón para iniciar ejercicio cervical" />
-                    -->
+                    <!-- corrigiendo-->
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -296,9 +296,8 @@
                         android:textAlignment="viewStart"
                         android:justificationMode="inter_word" />
 
-                    <!--
                     <Button
-                       android:id="@+id/btnLumbar"
+                       android:id="@+id/btnterapia_ec03"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:text="@string/realizar"
@@ -306,7 +305,7 @@
                        android:textColor="@color/white"
                        android:layout_gravity="end"
                        android:contentDescription="Botón para iniciar ejercicio lumbar" />
-                       -->
+
                </LinearLayout>
            </com.google.android.material.card.MaterialCardView>
 
@@ -355,9 +354,8 @@
                         android:textAlignment="viewStart"
                         android:justificationMode="inter_word" />
 
-                    <!--
                     <Button
-                        android:id="@+id/btnLumbar"
+                        android:id="@+id/btnterapia_ec05"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/realizar"
@@ -365,8 +363,7 @@
                         android:textColor="@color/white"
                         android:layout_gravity="end"
                         android:contentDescription="Botón para iniciar ejercicio lumbar" />
-                    -->
-                </LinearLayout>
+                    </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>

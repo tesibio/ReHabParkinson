@@ -43,6 +43,9 @@
         <activity android:name=".LoginActivity" android:exported="true" />
         <activity android:name=".terapiaLumbarActivity" android:exported="false" />
         <activity android:name=".TerapiaCervicalActivity" android:exported="false" />
+        <activity android:name=".terapia_cl01" android:exported="false" />
+        <activity android:name=".terapia_ec03" android:exported="false" />
+        <activity android:name=".terapia_ec05" android:exported="false" />
         <activity android:name=".VideoCaptureActivity" android:exported="false" />
         <activity android:name=".PerfilActivity" android:exported="false" />
         <activity android:name=".VideoSelectorActivity" />

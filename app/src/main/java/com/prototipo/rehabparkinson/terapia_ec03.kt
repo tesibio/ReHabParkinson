@@ -1,6 +1,7 @@
 package com.prototipo.rehabparkinson
 
 import android.content.Intent
+import android.graphics.text.LineBreaker
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -17,11 +18,11 @@ import android.widget.TextView
 import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
 
-class TerapiaCervicalActivity : AppCompatActivity() {
+class terapia_ec03() : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_terapia_cervical)
+        setContentView(R.layout.activity_terapia_ec03)
 
         val btnRealizar = findViewById<Button>(R.id.btnRealizar)
         val btnEjemplo  = findViewById<Button>(R.id.btnEjemplo)
@@ -44,17 +45,18 @@ class TerapiaCervicalActivity : AppCompatActivity() {
 
         // Justificar (API 26+)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            tvDescripcion.justificationMode = Layout.JUSTIFICATION_MODE_INTER_WORD
+            tvDescripcion.justificationMode = LineBreaker.JUSTIFICATION_MODE_INTER_WORD
         }
 
         // Lista de pasos
         val pasos = listOf(
-            "Siéntese en una silla con respaldo cómodo",
-            "Flexione el cuello lateralmente intentando llevar el oído izquierdo al hombro izquierdo",
-            "Regrese a la posición inicial (línea media), sin flexionar hacia el lado contrario",
-            "No eleve el hombro ni gire la cabeza hacia el costado",
-            "La flexión es solo del cuello sin girar el rostro",
-            "Haga los ejercicios a su propio ritmo para evitar mareos"
+            "Párese con los pies separados a la anchura de los hombros y deje los brazos a los costados.",
+            "Lleve la mano derecha para tocar el oído izquierdo, sin inclinar el cuello.",
+            "Regrese al centro.",
+            "Ahora lleve la mano izquierda para tocar el oído derecho, sin inclinar el cuello.",
+            "Vuelva al centro.",
+            "Hágalo a un ritmo cómodo.",
+            "Realice 15 repeticiones por cada lado."
         )
 
         // Tamaños en dp para la viñeta
@@ -97,7 +99,7 @@ class TerapiaCervicalActivity : AppCompatActivity() {
             btnEjemplo.visibility = View.GONE
 
 
-            val videoUri = Uri.parse("android.resource://$packageName/${R.raw.video_cc02}")
+            val videoUri = Uri.parse("android.resource://$packageName/${R.raw.video_ec03}")
             videoView.setVideoURI(videoUri)
 
             val mediaController = MediaController(this).apply {
