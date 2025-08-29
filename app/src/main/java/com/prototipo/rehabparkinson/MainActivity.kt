@@ -8,13 +8,10 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.PopupMenu
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.api.services.drive.DriveScopes
-
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,32 +31,27 @@ class MainActivity : AppCompatActivity() {
         }
 
         // ✅ Botón terapia cervical
-        val btnCervical = findViewById<Button>(R.id.btnCervical)
-        btnCervical.setOnClickListener {
+        findViewById<Button>(R.id.btnCervical).setOnClickListener {
             startActivity(Intent(this, TerapiaCervicalActivity::class.java))
         }
 
         // ✅ Botón terapia lumbar
-        val btnLumbar = findViewById<Button>(R.id.btnLumbar)
-        btnLumbar.setOnClickListener {
+        findViewById<Button>(R.id.btnLumbar).setOnClickListener {
             startActivity(Intent(this, terapiaLumbarActivity::class.java))
         }
 
-        // ✅ Botón terapia Terapia_cl01
-        val btnterapia_cl01 = findViewById<Button>(R.id.btnterapia_cl01)
-        btnterapia_cl01.setOnClickListener {
+        // ✅ Botón terapia CL01
+        findViewById<Button>(R.id.btnterapia_cl01).setOnClickListener {
             startActivity(Intent(this, terapia_cl01::class.java))
         }
 
-        // ✅ Botón terapia Terapia_ec03
-        val btnterapiaterapia_ec03 = findViewById<Button>(R.id.btnterapia_ec03)
-        btnterapiaterapia_ec03.setOnClickListener {
+        // ✅ Botón terapia EC03
+        findViewById<Button>(R.id.btnterapia_ec03).setOnClickListener {
             startActivity(Intent(this, terapia_ec03::class.java))
         }
 
-        // ✅ Botón terapia Terapia_ec05
-        val btnterapia_ec05 = findViewById<Button>(R.id.btnterapia_ec05)
-        btnterapia_ec05.setOnClickListener {
+        // ✅ Botón terapia EC05
+        findViewById<Button>(R.id.btnterapia_ec05).setOnClickListener {
             startActivity(Intent(this, terapia_ec05::class.java))
         }
     }
@@ -82,7 +74,6 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
     }
-
 
     private fun mostrarMenu() {
         val popup = PopupMenu(this, findViewById(R.id.btnMenu))
@@ -120,15 +111,14 @@ class MainActivity : AppCompatActivity() {
 
                     true
                 }
-
-
+                R.id.menu_videos -> {
+                    // 🚀 Nuevo acceso directo a los videos
+                    startActivity(Intent(this, VideoSelectorActivity::class.java))
+                    true
+                }
                 R.id.menu_logout -> {
                     getSharedPreferences("datosUsuario", MODE_PRIVATE).edit().clear().apply()
-                    val intent = Intent(this, LoginActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    startActivity(intent)
                     cerrarSesionGoogle()
-                    finish()
                     true
                 }
                 else -> false

@@ -14,10 +14,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.api.services.drive.Drive
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.io.File
-import java.text.SimpleDateFormat
-import java.util.*
 
 private const val TAG = "VideoSelectorActivity"
 
@@ -26,12 +24,12 @@ class VideoSelectorActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var videoPreview: VideoView
     private lateinit var previewContainer: FrameLayout
-    private lateinit var btnCerrar: Button
+    private lateinit var btnCerrar: FloatingActionButton
     private lateinit var btnSubir: Button
 
     private lateinit var adapter: VideoAdapter
     private var selectedVideoFile: File? = null
-    private var archivoFinal: File? = null  // ⬅️ Global para reintento post login
+    private var archivoFinal: File? = null  // archivo a subir
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,27 +58,13 @@ class VideoSelectorActivity : AppCompatActivity() {
             previewContainer.visibility = View.GONE
         }
 
-        val tipoEjercicio = intent.getStringExtra("tipoEjercicio") ?: "CE"
-        val prefs = getSharedPreferences("datosUsuario", MODE_PRIVATE)
-        val expediente = prefs.getString("numExpediente", "000") ?: "000"
-
         btnSubir.setOnClickListener {
             val file = selectedVideoFile
             if (file != null) {
                 Log.d(TAG, "Archivo seleccionado: ${file.absolutePath}")
-                Log.d(TAG, "¿Existe antes de renombrar? ${file.exists()}")
+                Log.d(TAG, "¿Existe el archivo? ${file.exists()}")
 
-                val fecha = SimpleDateFormat("ddMMyy", Locale.getDefault()).format(Date(file.lastModified()))
-                val nuevoNombre = "${tipoEjercicio}${fecha}_${expediente}.mp4"
-                Log.d(TAG, "Nuevo nombre esperado: $nuevoNombre")
-
-                val renamedFile = File(file.parentFile, nuevoNombre)
-                val renameSuccess = file.renameTo(renamedFile)
-                Log.d(TAG, "¿Renombrado con éxito? $renameSuccess")
-                Log.d(TAG, "Ruta final: ${renamedFile.absolutePath}")
-                Log.d(TAG, "¿Existe el archivo final? ${renamedFile.exists()}")
-
-                archivoFinal = if (renameSuccess) renamedFile else file
+                archivoFinal = file
 
                 if (!archivoFinal!!.exists()) {
                     Log.e(TAG, "ERROR: El archivo no existe al intentar subir.")

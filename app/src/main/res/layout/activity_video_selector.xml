@@ -1,66 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@color/white"
     android:padding="16dp">
 
+    <!-- Encabezado -->
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/tvTitulo"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Selecciona un video para previsualizar o subir:"
-        android:textSize="16sp"
+        android:background="@color/brown"
+        android:gravity="center"
+        android:padding="12dp"
+        android:text="Seleccionar video"
+        android:textColor="@color/white"
+        android:textSize="18sp"
         android:textStyle="bold"
-        android:paddingBottom="8dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- Lista de videos (ocupa 40% de la pantalla y es scrollable) -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerVideos"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_marginTop="12dp"
+        android:scrollbars="vertical"
+        app:layout_constraintTop_toBottomOf="@id/tvTitulo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.4" />
+
+    <!-- Título Vista previa -->
+    <TextView
+        android:id="@+id/tvPreviewLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vista previa"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/videoPreviewContainer" />
 
     <!-- Contenedor de vista previa -->
     <FrameLayout
         android:id="@+id/videoPreviewContainer"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_width="0dp"
+        android:layout_height="220dp"
+        android:background="@android:color/black"
         android:visibility="gone"
-        android:layout_marginTop="8dp"
-        android:background="@android:color/black">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btnSubirSeleccionado">
 
         <VideoView
             android:id="@+id/videoPreview"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <Button
+        <!-- Botón flotante para cerrar -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnCerrarPreview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cerrar"
             android:layout_gravity="top|end"
             android:layout_margin="8dp"
-            android:backgroundTint="@android:color/holo_red_light"
-            android:textColor="@android:color/white" />
+            android:contentDescription="Cerrar vista previa"
+            app:backgroundTint="@android:color/darker_gray"
+            app:tint="@android:color/white"
+            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
     </FrameLayout>
 
-    <!-- Botón de subida -->
+    <!-- Botón subir -->
     <Button
         android:id="@+id/btnSubirSeleccionado"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Subir video seleccionado"
-        android:layout_marginTop="12dp"
         android:enabled="false"
+        android:layout_marginTop="12dp"
         android:backgroundTint="@color/brown"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btnVolver" />
+
+    <!-- Botón volver -->
     <Button
         android:id="@+id/btnVolver"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Volver"
         android:layout_marginTop="8dp"
         android:backgroundTint="@android:color/darker_gray"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,6 +6,10 @@
     <item
         android:id="@+id/menu_version"
         android:title="Versión de la app" />
+    <!--acceso directo a los videos -->
+    <item
+        android:id="@+id/menu_videos"
+        android:title="Mis videos" />
     <item
         android:id="@+id/menu_logout"
         android:title="Cerrar sesión" />

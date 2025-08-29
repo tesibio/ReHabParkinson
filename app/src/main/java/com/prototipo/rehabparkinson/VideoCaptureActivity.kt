@@ -111,8 +111,17 @@ class VideoCaptureActivity : AppCompatActivity() {
 
     @SuppressLint("MissingPermission")
     private fun startRecording() {
-        val name = SimpleDateFormat(FILENAME_FORMAT, Locale.US)
-            .format(System.currentTimeMillis()) + ".mp4"
+        val tipoEjercicio = intent.getStringExtra("tipoEjercicio") ?: "GEN"
+        val prefs = getSharedPreferences("datosUsuario", MODE_PRIVATE)
+        val expediente = prefs.getString("numExpediente", "000") ?: "000"
+
+        // 🔹 Fecha base en formato ddMMyy
+        val fecha = SimpleDateFormat("ddMMyy", Locale.getDefault()).format(System.currentTimeMillis())
+        // 🔹 Unique ID basado en hora (HHmmss)
+        val horaId = SimpleDateFormat("HHmmss", Locale.getDefault()).format(System.currentTimeMillis())
+
+        // 🔹 Nombre final del archivo con fecha + hora exacta
+        val name = "${tipoEjercicio}_${fecha}_${expediente}_$horaId.mp4"
 
         val contentValues = ContentValues().apply {
             put(MediaStore.MediaColumns.DISPLAY_NAME, name)
@@ -147,24 +156,14 @@ class VideoCaptureActivity : AppCompatActivity() {
                     } else {
                         videoUri = event.outputResults.outputUri
                         btnEnviar.visibility = View.VISIBLE
-                        Toast.makeText(this, "Video guardado correctamente", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Video guardado: $name", Toast.LENGTH_SHORT).show()
                     }
-
-//                    if (event.error != VideoRecordEvent.Finalize.ERROR_NONE) {
-//                        Log.e(TAG, "Error grabación: ${event.error}", event.cause)
-//                        Toast.makeText(this, "Error al guardar video", Toast.LENGTH_LONG).show()
-//                    } else {
-//                        Toast.makeText(
-//                            this,
-//                            "Video guardado: ${event.outputResults.outputUri}",
-//                            Toast.LENGTH_LONG
-//                        ).show()
-//                    }
                     recording = null
                 }
             }
         }
     }
+
 
     private fun stopRecording() {
         recording?.stop()

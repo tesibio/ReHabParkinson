@@ -88,7 +88,7 @@ class terapia_cl01() : AppCompatActivity() {
         // Ir a IndicacionesActivity
         btnRealizar.setOnClickListener {
             val intent = Intent(this, IndicacionesActivity::class.java)
-            intent.putExtra("tipoEjercicio", "CC01")
+            intent.putExtra("tipoEjercicio", "CL01")
             startActivity(intent)
         }
 
