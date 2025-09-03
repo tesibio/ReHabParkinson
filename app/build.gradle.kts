@@ -87,6 +87,8 @@ dependencies {
 
     implementation("com.google.apis:google-api-services-drive:v3-rev20250511-2.0.0")
 
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

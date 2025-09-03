@@ -13,9 +13,11 @@ import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.io.File
+import okhttp3.Call
+import okhttp3.Callback
+import okhttp3.Response
 
 private const val TAG = "VideoSelectorActivity"
 
@@ -72,13 +74,30 @@ class VideoSelectorActivity : AppCompatActivity() {
                     return@setOnClickListener
                 }
 
-                DriveUploader.iniciarSesion(this) {
-                    Log.d(TAG, "Sesión Google iniciada. Subiendo archivo: ${archivoFinal!!.name}")
-                    DriveUploader.uploadFile(this, archivoFinal!!) { exito ->
-                        Log.d(TAG, "Resultado de la subida: $exito")
-                        Toast.makeText(this, if (exito) "Subida completada" else "Error en la subida", Toast.LENGTH_SHORT).show()
+                // 🔹 Subida Multipart con UploadHelper
+                val serverUrl = "https://server-6673567914.us-central1.run.app/upload"
+                //val serverUrl = "https://httpbin.org/post"  //val serverUrl = "http://<hostname>/upload" // ⚠️ cámbialo por tu servidor real
+                UploadHelper.uploadFile(this, Uri.fromFile(archivoFinal!!), serverUrl, object : Callback {
+                    override fun onFailure(call: Call, e: java.io.IOException) {
+                        runOnUiThread {
+                            Log.e(TAG, "Error al subir: ${e.message}", e)
+                            Toast.makeText(applicationContext, "Error al subir: ${e.message}", Toast.LENGTH_LONG).show()
+                        }
                     }
-                }
+
+                    override fun onResponse(call: Call, response: Response) {
+                        runOnUiThread {
+                            if (response.isSuccessful) {
+                                Log.d(TAG, "Subida exitosa. Respuesta: ${response.body?.string()}")
+                                Toast.makeText(applicationContext, "Subida exitosa", Toast.LENGTH_SHORT).show()
+                            } else {
+                                Log.e(TAG, "Error en servidor: ${response.code}")
+                                Toast.makeText(applicationContext, "Error en servidor: ${response.code}", Toast.LENGTH_LONG).show()
+                            }
+                        }
+                    }
+                })
+
             } else {
                 Log.w(TAG, "No hay archivo seleccionado para subir.")
                 Toast.makeText(this, "No has seleccionado un archivo", Toast.LENGTH_SHORT).show()
@@ -91,31 +110,6 @@ class VideoSelectorActivity : AppCompatActivity() {
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)
             finish()
-        }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == DriveUploader.REQUEST_CODE_SIGN_IN) {
-            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-            if (task.isSuccessful) {
-                val account = task.result
-                DriveUploader.manejarResultadoSignIn(account, this) {
-                    archivoFinal?.let { archivo ->
-                        Log.d(TAG, "Reintentando subida tras login. Archivo: ${archivo.absolutePath}")
-                        if (archivo.exists()) {
-                            DriveUploader.uploadFile(this, archivo) { exito ->
-                                Toast.makeText(this, if (exito) "Subido" else "Falló la subida", Toast.LENGTH_SHORT).show()
-                            }
-                        } else {
-                            Log.e(TAG, "Archivo no encontrado tras login: ${archivo.absolutePath}")
-                            Toast.makeText(this, "Archivo no encontrado tras autenticación", Toast.LENGTH_SHORT).show()
-                        }
-                    }
-                }
-            } else {
-                Toast.makeText(this, "Error de autenticación con Google", Toast.LENGTH_SHORT).show()
-            }
         }
     }
 

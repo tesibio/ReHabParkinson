@@ -31,9 +31,9 @@ class VideoCaptureActivity : AppCompatActivity() {
 
     private lateinit var previewView: PreviewView
     private lateinit var btnGrabar: Button
+    private lateinit var btnEnviar: Button
     private lateinit var videoCapture: VideoCapture<Recorder>
     private lateinit var cameraExecutor: ExecutorService
-    private lateinit var btnEnviar: Button
     private var videoUri: Uri? = null
     private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
     private var recording: Recording? = null
@@ -44,9 +44,10 @@ class VideoCaptureActivity : AppCompatActivity() {
 
         previewView = findViewById(R.id.previewView)
         btnGrabar = findViewById(R.id.btnGrabar)
+        btnEnviar = findViewById(R.id.btnEnviar) // ⚡ nuevo botón
         cameraExecutor = Executors.newSingleThreadExecutor()
-        val tipoEjercicio = intent.getStringExtra("tipoEjercicio") ?: "CE"
 
+        val tipoEjercicio = intent.getStringExtra("tipoEjercicio") ?: "CE"
 
         if (allPermissionsGranted()) {
             startCamera()
@@ -54,23 +55,25 @@ class VideoCaptureActivity : AppCompatActivity() {
             requestPermissions.launch(REQUIRED_PERMISSIONS)
         }
 
+        // Grabar / detener
         btnGrabar.setOnClickListener {
             if (recording != null) stopRecording() else startRecording()
         }
-        btnEnviar = findViewById(R.id.btnEnviar)
+
+        // Ir a selector de videos
         btnEnviar.setOnClickListener {
             val intent = Intent(this, VideoSelectorActivity::class.java)
             intent.putExtra("tipoEjercicio", tipoEjercicio)
             startActivity(intent)
         }
-        btnEnviar.visibility = View.GONE
+        btnEnviar.visibility = View.VISIBLE // lo dejamos visible
 
-
+        // Cambiar cámara
         findViewById<Button>(R.id.btnSwitchCamera).setOnClickListener {
             toggleCamera()
         }
 
-        // ⬅️ Aquí la lógica de cancelar
+        // Cancelar y volver atrás
         findViewById<Button>(R.id.btnCancelar).setOnClickListener {
             finish()
         }
@@ -115,12 +118,9 @@ class VideoCaptureActivity : AppCompatActivity() {
         val prefs = getSharedPreferences("datosUsuario", MODE_PRIVATE)
         val expediente = prefs.getString("numExpediente", "000") ?: "000"
 
-        // 🔹 Fecha base en formato ddMMyy
+        // Nombre del archivo: CE_010925_1234_153000.mp4
         val fecha = SimpleDateFormat("ddMMyy", Locale.getDefault()).format(System.currentTimeMillis())
-        // 🔹 Unique ID basado en hora (HHmmss)
         val horaId = SimpleDateFormat("HHmmss", Locale.getDefault()).format(System.currentTimeMillis())
-
-        // 🔹 Nombre final del archivo con fecha + hora exacta
         val name = "${tipoEjercicio}_${fecha}_${expediente}_$horaId.mp4"
 
         val contentValues = ContentValues().apply {
@@ -152,18 +152,18 @@ class VideoCaptureActivity : AppCompatActivity() {
                 is VideoRecordEvent.Finalize -> {
                     btnGrabar.text = "Grabar"
                     if (event.error != VideoRecordEvent.Finalize.ERROR_NONE) {
+                        Log.e(TAG, "Error grabación: ${event.error}", event.cause)
                         Toast.makeText(this, "Error al guardar video", Toast.LENGTH_LONG).show()
                     } else {
                         videoUri = event.outputResults.outputUri
-                        btnEnviar.visibility = View.VISIBLE
-                        Toast.makeText(this, "Video guardado: $name", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Video guardado: $videoUri", Toast.LENGTH_LONG).show()
+                        // ✅ aquí ya no subimos nada, solo guardamos
                     }
                     recording = null
                 }
             }
         }
     }
-
 
     private fun stopRecording() {
         recording?.stop()
