@@ -71,5 +71,16 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
+        <!-- Botón Volver -->
+        <Button
+            android:id="@+id/btnVolverPerfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Volver"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/brown"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="24dp"/>
+
     </LinearLayout>
 </ScrollView>

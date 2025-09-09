@@ -8,7 +8,6 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 import java.io.FileOutputStream
-import java.io.InputStream
 
 object UploadHelper {
     private val client = OkHttpClient()
@@ -20,7 +19,7 @@ object UploadHelper {
             .setType(MultipartBody.FORM)
             .addFormDataPart(
                 "file",
-                file.name,
+                file.name, // ✅ aquí usamos el nombre real, no "tempfile.mp4"
                 file.asRequestBody("video/mp4".toMediaTypeOrNull())
             )
             .build()
@@ -34,18 +33,27 @@ object UploadHelper {
     }
 
     private fun uriToFile(context: Context, uri: Uri): File {
+        var name: String? = null
+
+        // Intentar recuperar el nombre real desde MediaStore
         val returnCursor = context.contentResolver.query(uri, null, null, null, null)
         val nameIndex = returnCursor?.getColumnIndex(OpenableColumns.DISPLAY_NAME) ?: -1
-        returnCursor?.moveToFirst()
-        val name = if (nameIndex >= 0) returnCursor?.getString(nameIndex) else "tempfile.mp4"
+        if (nameIndex >= 0 && returnCursor != null && returnCursor.moveToFirst()) {
+            name = returnCursor.getString(nameIndex)
+        }
         returnCursor?.close()
 
-        val file = File(context.cacheDir, name ?: "tempfile.mp4")
-        val inputStream: InputStream? = context.contentResolver.openInputStream(uri)
-        val outputStream = FileOutputStream(file)
-        inputStream?.copyTo(outputStream)
-        inputStream?.close()
-        outputStream.close()
+        // Si no se pudo obtener, generamos uno único
+        val finalName = name ?: "video_${System.currentTimeMillis()}.mp4"
+
+        // Copiar el contenido del Uri al caché con ese nombre
+        val file = File(context.cacheDir, finalName)
+        context.contentResolver.openInputStream(uri)?.use { input ->
+            FileOutputStream(file).use { output ->
+                input.copyTo(output)
+            }
+        }
         return file
     }
 }
+

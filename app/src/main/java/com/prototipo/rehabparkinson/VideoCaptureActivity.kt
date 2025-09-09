@@ -157,7 +157,13 @@ class VideoCaptureActivity : AppCompatActivity() {
                     } else {
                         videoUri = event.outputResults.outputUri
                         Toast.makeText(this, "Video guardado: $videoUri", Toast.LENGTH_LONG).show()
-                        // ✅ aquí ya no subimos nada, solo guardamos
+
+                        // ✅ Guardamos también el nombre y el Uri para usarlos después
+                        val prefs = getSharedPreferences("datosUsuario", MODE_PRIVATE)
+                        prefs.edit().apply {
+                            putString("ultimoVideoNombre", name)          // el nombre que armaste con tu protocolo
+                            putString("ultimoVideoUri", videoUri.toString())
+                        }.apply()
                     }
                     recording = null
                 }

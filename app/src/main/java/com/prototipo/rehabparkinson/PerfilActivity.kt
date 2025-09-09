@@ -1,6 +1,7 @@
 package com.prototipo.rehabparkinson
 
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -21,6 +22,7 @@ class PerfilActivity : AppCompatActivity() {
         val tvRol = findViewById<TextView>(R.id.tvPerfilRol)
         val tvID = findViewById<TextView>(R.id.tvPerfilID)
         val imgPerfil = findViewById<ImageView>(R.id.imageView)
+        val btnVolver = findViewById<Button>(R.id.btnVolverPerfil)
 
         // Mostrar nombre y expediente desde SharedPreferences
         tvNombre.text = nombre
@@ -40,6 +42,11 @@ class PerfilActivity : AppCompatActivity() {
             } else {
                 imgPerfil.setImageResource(R.drawable.imagendummy) // Imagen por defecto
             }
+        }
+
+        // Acción del botón Volver
+        btnVolver.setOnClickListener {
+            finish() // Cierra PerfilActivity y regresa a la pantalla anterior
         }
     }
 
