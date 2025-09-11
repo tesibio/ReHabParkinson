@@ -76,6 +76,8 @@ class VideoSelectorActivity : AppCompatActivity() {
 
                 // 🔹 Subida Multipart con UploadHelper
                 val serverUrl = "https://server-6673567914.us-central1.run.app/upload"
+                //val serverUrl = "https://webhook.site/0f85fc2f-ee75-4894-a7b4-9ac60f496808"
+
                 //val serverUrl = "https://httpbin.org/post"  //val serverUrl = "http://<hostname>/upload" // ⚠️ cámbialo por tu servidor real
                 UploadHelper.uploadFile(this, Uri.fromFile(archivoFinal!!), serverUrl, object : Callback {
                     override fun onFailure(call: Call, e: java.io.IOException) {

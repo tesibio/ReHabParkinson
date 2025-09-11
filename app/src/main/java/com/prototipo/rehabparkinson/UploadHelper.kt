@@ -13,7 +13,11 @@ object UploadHelper {
     private val client = OkHttpClient()
 
     fun uploadFile(context: Context, uri: Uri, serverUrl: String, callback: Callback) {
-        val file = uriToFile(context, uri)
+        val file = if (uri.scheme == "file") {
+            File(uri.path!!) // conserva el nombre real
+        } else {
+            uriToFile(context, uri)
+        }
 
         val requestBody = MultipartBody.Builder()
             .setType(MultipartBody.FORM)
