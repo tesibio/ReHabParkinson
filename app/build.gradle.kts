@@ -1,3 +1,5 @@
+import com.android.build.api.dsl.Packaging
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -42,18 +44,20 @@ android {
         kotlinCompilerExtensionVersion = "1.5.15"
     }
 
-    packagingOptions {
-        packagingOptions {
-            exclude("META-INF/INDEX.LIST")
-            exclude("META-INF/LICENSE")
-            exclude("META-INF/LICENSE.txt")
-            exclude("META-INF/NOTICE")
-            exclude("META-INF/NOTICE.txt")
-            exclude("META-INF/DEPENDENCIES")
+    packaging {
+        resources {
+            excludes += setOf(
+                "META-INF/INDEX.LIST",
+                "META-INF/LICENSE",
+                "META-INF/LICENSE.txt",
+                "META-INF/NOTICE",
+                "META-INF/NOTICE.txt",
+                "META-INF/DEPENDENCIES"
+            )
         }
     }
 
-    buildToolsVersion = "36.0.0"
+    //buildToolsVersion = "36.0.0"
     ndkVersion = "27.0.12077973"
 }
 
@@ -83,8 +87,6 @@ dependencies {
 
     implementation("com.google.android.gms:play-services-auth:21.0.0")
     implementation("com.google.api-client:google-api-client-android:1.35.0")
-    implementation("com.google.apis:google-api-services-drive:v3-rev20250511-2.0.0")
-
     implementation("com.google.apis:google-api-services-drive:v3-rev20250511-2.0.0")
 
     implementation("com.squareup.okhttp3:okhttp:4.12.0")

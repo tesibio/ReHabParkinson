@@ -98,8 +98,14 @@ class VideoCaptureActivity : AppCompatActivity() {
                 .also { it.setSurfaceProvider(previewView.surfaceProvider) }
 
             val recorder = Recorder.Builder()
-                .setQualitySelector(QualitySelector.from(Quality.HD))
+                .setQualitySelector(
+                    QualitySelector.from(
+                        Quality.SD,
+                        FallbackStrategy.lowerQualityOrHigherThan(Quality.SD)
+                    )
+                )
                 .build()
+
 
             videoCapture = VideoCapture.withOutput(recorder)
 
@@ -138,9 +144,9 @@ class VideoCaptureActivity : AppCompatActivity() {
 
         var pendingRecording = videoCapture.output.prepareRecording(this, mediaStoreOutput)
 
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
-            pendingRecording = pendingRecording.withAudioEnabled()
-        }
+        //if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
+        //    pendingRecording = pendingRecording.withAudioEnabled()
+        //}
 
         recording = pendingRecording.start(ContextCompat.getMainExecutor(this)) { event ->
             when (event) {
