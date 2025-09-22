@@ -6,7 +6,6 @@ import android.net.Uri
 import android.provider.OpenableColumns
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 import java.io.FileOutputStream
 
@@ -20,11 +19,16 @@ object UploadHelper {
         onProgress: (Int) -> Unit,
         callback: Callback
     ) {
-        val file = uriToFile(context, uri)
+        // ✅ usar el nombre real si el Uri es "file://"
+        val file = if (uri.scheme == "file") {
+            File(uri.path!!)
+        } else {
+            uriToFile(context, uri)
+        }
 
         val requestBody = ProgressRequestBody(file, "video/mp4") { progress ->
             (context as Activity).runOnUiThread {
-                onProgress(progress)  // 🔹 devuelve progreso a la Activity
+                onProgress(progress)  // 🔹 actualiza progreso en la Activity
             }
         }
 
@@ -40,7 +44,6 @@ object UploadHelper {
 
         client.newCall(request).enqueue(callback)
     }
-
 
     private fun uriToFile(context: Context, uri: Uri): File {
         var name: String? = null
@@ -66,4 +69,3 @@ object UploadHelper {
         return file
     }
 }
-
