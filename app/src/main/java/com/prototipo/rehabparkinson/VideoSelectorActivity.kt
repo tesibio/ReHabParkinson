@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.FrameLayout
+import android.widget.ProgressBar
 import android.widget.Toast
 import android.widget.VideoView
 import androidx.appcompat.app.AppCompatActivity
@@ -18,6 +19,7 @@ import java.io.File
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.Response
+import java.io.IOException
 
 private const val TAG = "VideoSelectorActivity"
 
@@ -30,6 +32,9 @@ class VideoSelectorActivity : AppCompatActivity() {
     private lateinit var btnSubir: Button
 
     private lateinit var adapter: VideoAdapter
+    private lateinit var progressBar1: ProgressBar
+    private lateinit var progressBar2: ProgressBar
+
     private var selectedVideoFile: File? = null
     private var archivoFinal: File? = null  // archivo a subir
 
@@ -37,6 +42,8 @@ class VideoSelectorActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_video_selector)
 
+        progressBar1 = findViewById(R.id.progressBarUpload1)
+        progressBar2 = findViewById(R.id.progressBarUpload2)
         recyclerView = findViewById(R.id.recyclerVideos)
         videoPreview = findViewById(R.id.videoPreview)
         previewContainer = findViewById(R.id.videoPreviewContainer)
@@ -60,49 +67,87 @@ class VideoSelectorActivity : AppCompatActivity() {
             previewContainer.visibility = View.GONE
         }
 
+        // 🔹 direcciones de subida Multipart con UploadHelper referencias
+        //val serverUrl1 = "https://tesibio.com/upload.php" //Direccion de respaldo de video
+        //val serverUrl2 = "https://server-6673567914.us-central1.run.app/upload" //Direccion de servidor cristian
+        //val serverUrl = "https://webhook.site/0f85fc2f-ee75-4894-a7b4-9ac60f496808" //Direccion de prueba, cambia con cada apertura de página
+
+        //val serverUrl = "https://httpbin.org/post"  // ⚠️ cámbialo por tu servidor real!!!
         btnSubir.setOnClickListener {
             val file = selectedVideoFile
             if (file != null) {
-                Log.d(TAG, "Archivo seleccionado: ${file.absolutePath}")
-                Log.d(TAG, "¿Existe el archivo? ${file.exists()}")
-
-                archivoFinal = file
-
-                if (!archivoFinal!!.exists()) {
-                    Log.e(TAG, "ERROR: El archivo no existe al intentar subir.")
-                    Toast.makeText(this, "Error: el archivo no existe para subir", Toast.LENGTH_LONG).show()
+                if (!file.exists()) {
+                    Toast.makeText(this, "Error: el archivo no existe", Toast.LENGTH_LONG).show()
                     return@setOnClickListener
                 }
 
-                // 🔹 Subida Multipart con UploadHelper
-                val serverUrl = "https://tesibio.com/upload.php"
-                //val serverUrl = "https://server-6673567914.us-central1.run.app/upload"
-                //val serverUrl = "https://webhook.site/0f85fc2f-ee75-4894-a7b4-9ac60f496808"
+                val uriFile = Uri.fromFile(file)
 
-                //val serverUrl = "https://httpbin.org/post"  //val serverUrl = "http://<hostname>/upload" // ⚠️ cámbialo por tu servidor real
-                UploadHelper.uploadFile(this, Uri.fromFile(archivoFinal!!), serverUrl, object : Callback {
-                    override fun onFailure(call: Call, e: java.io.IOException) {
-                        runOnUiThread {
-                            Log.e(TAG, "Error al subir: ${e.message}", e)
-                            Toast.makeText(applicationContext, "Error al subir: ${e.message}", Toast.LENGTH_LONG).show()
+                // --- Subida a serverUrl2 ---
+                progressBar2.visibility = View.VISIBLE
+                progressBar2.progress = 0
+                val serverUrl2 = "https://server-6673567914.us-central1.run.app/upload"
+                UploadHelper.uploadFile(
+                    this,
+                    uriFile,
+                    serverUrl2,
+                    onProgress = { progress ->
+                        progressBar2.progress = progress
+                    },
+                    callback = object : Callback {
+                        override fun onFailure(call: Call, e: IOException) {
+                            runOnUiThread {
+                                progressBar2.visibility = View.GONE
+                                Toast.makeText(applicationContext, "Error server 2: ${e.message}", Toast.LENGTH_LONG).show()
+                            }
                         }
-                    }
 
-                    override fun onResponse(call: Call, response: Response) {
-                        runOnUiThread {
-                            if (response.isSuccessful) {
-                                Log.d(TAG, "Subida exitosa. Respuesta: ${response.body?.string()}")
-                                Toast.makeText(applicationContext, "Subida exitosa", Toast.LENGTH_SHORT).show()
-                            } else {
-                                Log.e(TAG, "Error en servidor: ${response.code}")
-                                Toast.makeText(applicationContext, "Error en servidor: ${response.code}", Toast.LENGTH_LONG).show()
+                        override fun onResponse(call: Call, response: Response) {
+                            runOnUiThread {
+                                progressBar2.visibility = View.GONE
+                                if (response.isSuccessful) {
+                                    Toast.makeText(applicationContext, "Subida exitosa a server 2", Toast.LENGTH_SHORT).show()
+                                } else {
+                                    Toast.makeText(applicationContext, "Error server 2: ${response.code}", Toast.LENGTH_LONG).show()
+                                }
                             }
                         }
                     }
-                })
+                )
+
+                // --- Subida a serverUrl1 ---
+                progressBar1.visibility = View.VISIBLE
+                progressBar1.progress = 0
+                val serverUrl1 = "https://tesibio.com/upload.php"
+                UploadHelper.uploadFile(
+                    this,
+                    uriFile,
+                    serverUrl1,
+                    onProgress = { progress ->
+                        progressBar1.progress = progress
+                    },
+                    callback = object : Callback {
+                        override fun onFailure(call: Call, e: IOException) {
+                            runOnUiThread {
+                                progressBar1.visibility = View.GONE
+                                Toast.makeText(applicationContext, "Error server 1: ${e.message}", Toast.LENGTH_LONG).show()
+                            }
+                        }
+
+                        override fun onResponse(call: Call, response: Response) {
+                            runOnUiThread {
+                                progressBar1.visibility = View.GONE
+                                if (response.isSuccessful) {
+                                    Toast.makeText(applicationContext, "Subida exitosa a server 1", Toast.LENGTH_SHORT).show()
+                                } else {
+                                    Toast.makeText(applicationContext, "Error server 1: ${response.code}", Toast.LENGTH_LONG).show()
+                                }
+                            }
+                        }
+                    }
+                )
 
             } else {
-                Log.w(TAG, "No hay archivo seleccionado para subir.")
                 Toast.makeText(this, "No has seleccionado un archivo", Toast.LENGTH_SHORT).show()
             }
         }

@@ -1,5 +1,6 @@
 package com.prototipo.rehabparkinson
 
+import android.app.Activity   // ✅ necesario para el cast
 import android.content.Context
 import android.net.Uri
 import android.provider.OpenableColumns
@@ -12,29 +13,34 @@ import java.io.FileOutputStream
 object UploadHelper {
     private val client = OkHttpClient()
 
-    fun uploadFile(context: Context, uri: Uri, serverUrl: String, callback: Callback) {
-        val file = if (uri.scheme == "file") {
-            File(uri.path!!) // conserva el nombre real
-        } else {
-            uriToFile(context, uri)
+    fun uploadFile(
+        context: Context,
+        uri: Uri,
+        serverUrl: String,
+        onProgress: (Int) -> Unit,
+        callback: Callback
+    ) {
+        val file = uriToFile(context, uri)
+
+        val requestBody = ProgressRequestBody(file, "video/mp4") { progress ->
+            (context as Activity).runOnUiThread {
+                onProgress(progress)  // 🔹 devuelve progreso a la Activity
+            }
         }
 
-        val requestBody = MultipartBody.Builder()
+        val multipart = MultipartBody.Builder()
             .setType(MultipartBody.FORM)
-            .addFormDataPart(
-                "file",
-                file.name, // ✅ aquí usamos el nombre real, no "tempfile.mp4"
-                file.asRequestBody("video/mp4".toMediaTypeOrNull())
-            )
+            .addFormDataPart("file", file.name, requestBody)
             .build()
 
         val request = Request.Builder()
             .url(serverUrl)
-            .post(requestBody)
+            .post(multipart)
             .build()
 
         client.newCall(request).enqueue(callback)
     }
+
 
     private fun uriToFile(context: Context, uri: Uri): File {
         var name: String? = null

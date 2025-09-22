@@ -1,6 +1,7 @@
 package com.prototipo.rehabparkinson
 
 import android.content.Intent
+import android.graphics.text.LineBreaker
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -44,7 +45,7 @@ class TerapiaCervicalActivity : AppCompatActivity() {
 
         // Justificar (API 26+)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            tvDescripcion.justificationMode = Layout.JUSTIFICATION_MODE_INTER_WORD
+            tvDescripcion.justificationMode = LineBreaker.JUSTIFICATION_MODE_INTER_WORD
         }
 
         // Lista de pasos
@@ -97,7 +98,7 @@ class TerapiaCervicalActivity : AppCompatActivity() {
             btnEjemplo.visibility = View.GONE
 
 
-            val videoUri = Uri.parse("android.resource://$packageName/${R.raw.video_cc02}")
+            val videoUri = Uri.parse("android.resource://$packageName/${R.raw.video_cc01}")
             videoView.setVideoURI(videoUri)
 
             val mediaController = MediaController(this).apply {

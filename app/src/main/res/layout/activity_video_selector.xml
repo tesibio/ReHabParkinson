@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -22,7 +23,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Lista de videos (ocupa 40% de la pantalla y es scrollable) -->
+    <!-- Lista de videos -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerVideos"
         android:layout_width="0dp"
@@ -78,16 +79,41 @@
     <!-- Botón subir -->
     <Button
         android:id="@+id/btnSubirSeleccionado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:text="Subir seleccionado"
+        app:layout_constraintTop_toBottomOf="@id/videoPreviewContainer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Barra para serverUrl1 (tesibio.com) -->
+    <ProgressBar
+        android:id="@+id/progressBarUpload1"
+        style="@android:style/Widget.ProgressBar.Horizontal"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Subir video seleccionado"
-        android:enabled="false"
-        android:layout_marginTop="12dp"
-        android:backgroundTint="@color/brown"
-        android:textColor="@android:color/white"
+        android:max="100"
+        android:progress="0"
+        android:layout_marginTop="8dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/btnSubirSeleccionado"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/btnVolver" />
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- Barra para serverUrl2 (us-central1.run.app) -->
+    <ProgressBar
+        android:id="@+id/progressBarUpload2"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:max="100"
+        android:progress="0"
+        android:layout_marginTop="8dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/progressBarUpload1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <!-- Botón volver -->
     <Button
@@ -98,8 +124,10 @@
         android:layout_marginTop="8dp"
         android:backgroundTint="@android:color/darker_gray"
         android:textColor="@android:color/white"
+        app:layout_constraintTop_toBottomOf="@id/progressBarUpload2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

@@ -96,7 +96,7 @@ class terapiaLumbarActivity : AppCompatActivity() {
             btnEjemplo.visibility = View.GONE
 
 
-            val videoUri = Uri.parse("android.resource://$packageName/${R.raw.video_cc01}")
+            val videoUri = Uri.parse("android.resource://$packageName/${R.raw.video_cc02}")
             videoView.setVideoURI(videoUri)
 
             val mediaController = MediaController(this).apply {
